@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
       <label for="phonenumber">Phone Number:</label>
-      <input type="text" class="form-control inp" id="phonenumber" placeholder="Enter Phone Number" name="phonenumber" maxlength="255" required>
+      <input type="number" class="form-control inp" id="phonenumber" placeholder="Enter Phone Number" name="phonenumber" maxlength="255" required>
     </div>
     <button id="btn1" type="submit" class="btn btn-default">Submit</button>
   </form>

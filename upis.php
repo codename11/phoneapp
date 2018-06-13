@@ -78,7 +78,7 @@ else if($result->num_rows > 0){
 				<form id="forma3" class="form-horizontal text-center">
 					<div class="form-group">
 					  <label for="phonenumber">Enter new phone number:</label>
-					  <input type="text" class="form-control inpV2" id="phonenumber" placeholder="Your old phone number: <?php echo $form_var[2]; ?>" name="phonenumber" value="" maxlength="255" required>
+					  <input type="number" class="form-control inpV2" id="phonenumber" placeholder="Your old phone number: <?php echo $form_var[2]; ?>" name="phonenumber" value="" maxlength="255" required>
 					</div>
 					<button id="btnx" type="submit" class="btn btn-default">Submit</button>
 				</form>
