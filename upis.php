@@ -71,23 +71,14 @@ else if($result->num_rows > 0){
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
           
 			
-				<form id="forma3" method="GET" action="phone.php" class="form-horizontal text-center">
+				<form id="forma3" class="form-horizontal text-center">
 					<div class="form-group">
-					  <label for="firstname">First Name:</label>
-					  <input type="text" class="form-control inp" id="firstname" placeholder="Enter First Name" name="firstname" maxlength="255" value="<?php echo $form_var[0]; ?>" required>
-					</div>
-					<div class="form-group">
-					  <label for="lastname">Last Name:</label>
-					  <input type="text" class="form-control inp" id="lastname" placeholder="Enter Last Name" name="lastname" maxlength="255" value="<?php echo $form_var[1]; ?>" required>
-					</div>
-					<div class="form-group">
-					  <label for="phonenumber">Phone Number:</label>
-					  <input type="text" class="form-control inp" id="phonenumber" placeholder="Enter Phone Number" name="phonenumber" value="<?php echo $form_var[2]; ?>" maxlength="255" required>
+					  <label for="phonenumber">Enter new phone number:</label>
+					  <input type="text" class="form-control inpV2" id="phonenumber" placeholder="Your old phone number: <?php echo $form_var[2]; ?>" name="phonenumber" value="" maxlength="255" required>
 					</div>
 					<button id="btnx" type="submit" class="btn btn-default">Submit</button>
 				</form>

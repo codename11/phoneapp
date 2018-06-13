@@ -15,12 +15,35 @@
 	padding-bottom: 50px;
 }
 
-.inp{
+.inp, .inpV2{
 	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
 }
 
+.inpV2{
+	width: 50%;
+}
+
 #raport{
 	margin-top: 1%;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #fefefe;
+	text-decoration: none;
+    color: red;
+    text-align: center;
+}
+
+a#flink:link, a#flink:visited, a#flink:hover, a#flink:active{
+    text-decoration: none;
+}
+
+.text-success, .footer{
+	font-family: 'Sofia';
 }

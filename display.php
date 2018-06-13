@@ -42,6 +42,8 @@ if($result->num_rows > 0){
 		
 	}
 	
+	$myJSON = json_encode($myObj);
+	echo($myJSON);
 }
 else if($result->num_rows == 0){
     echo "0 results";
@@ -49,8 +51,5 @@ else if($result->num_rows == 0){
 }
 
 $conn->close();
-
-$myJSON = json_encode($myObj);
-echo($myJSON);
 
 ?>

@@ -80,7 +80,7 @@ $(document).ready(function(){
 				$("#raport").html(result);//Display in div with id=raport.
 			},
 			error: function () {//In case of an error
-				alert("Error!!!");
+				$("#raport").html('error occured');
 			}
 
 		});
@@ -96,29 +96,48 @@ $(document).ready(function(){
 			data: $("#forma2").serialize(),//For displaying use this: print_r($_GET);
 			success:function(result){
 				
-				console.log(result);
-				var myObj = JSON.parse(result);
+				try{	
+						console.log(result);
+						var myObj = JSON.parse(result);
 
-				var txt = "<div class='container'><table id='tabela' class='table table-hover table-bordered table-sm'><thead><tr><th class='text-center'>Table row index</th><th class='text-center'>First Name</th><th class='text-center'>Last Name</th><th class='text-center'>Number</th></tr></thead><tbody>";
-				var len = myObj.FirstName.length;
-					
-				for (var i=0;i<len;i++) {
-					txt += "<tr><td class='text-center'>"+i+". <input type='checkbox' class='form-check-input' value='"+myObj.id[i]+"'>"+"</td><td class='text-center'>"+myObj.FirstName[i]+"</td><td class='text-center'>"+myObj.LastName[i]+"</td><td>"+myObj.number[i]+"</td>";
+						var txt = "<div class='container'><table id='tabela' class='table table-hover table-bordered table-sm'><thead><tr><th class='text-center'>Table row index</th><th class='text-center'>First Name</th><th class='text-center'>Last Name</th><th class='text-center'>Number</th></tr></thead><tbody>";
+						var len = myObj.FirstName.length;
+							
+						for (var i=0;i<len;i++) {
+							txt += "<tr><td class='text-center'>"+i+". <input type='checkbox' class='form-check-input' value='"+myObj.id[i]+"'>"+"</td><td class='text-center'>"+myObj.FirstName[i]+"</td><td class='text-center'>"+myObj.LastName[i]+"</td><td>"+myObj.number[i]+"</td>";
 
-				}
-				txt += "</tr></tbody></table></div><button id='btndel' type='button' class='btn btn-danger' onclick='delRec("+'"delete.php"'+",tabela,this)'>Delete</button>"
-				
-				$("#raport").html(txt);//Display in div with id=raport.
-			
+						}
+						txt += "</tr></tbody></table></div><button id='btndel' type='button' class='btn btn-danger' onclick='delRec("+'"delete.php"'+",tabela,this)'>Delete</button>"
+						
+						$("#raport").html(txt);//Display in div with id=raport.
+					}catch(err){
+						$("#raport").html('error occured');
+					}
 			},
 			error: function () {//In case of an error
-				alert("Error!!!");
+				$("#raport").html('error occured');
 			}
 
 		});
 	});
 	
-	
+	$("#forma3").submit(function(event){
+		event.preventDefault();//Use this if you want your fields to stay populated after submition.
+
+		$.ajax({
+			url: "phone.php",//Where to send data.
+			type: "GET",//POST or GET
+			contentType: "text/html",//Regular html format
+			data: $("#forma3").serialize(),//For displaying use this: print_r($_GET);
+			success:function(result){
+				$("#raport").html(result);//Display in div with id=raport.
+			},
+			error: function () {//In case of an error
+				$("#raport").html('error occured');
+			}
+
+		});
+	});
 
 	$(function(){ //Set active class when page is changed.
 		var current_page_URL = location.href;
