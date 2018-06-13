@@ -25,7 +25,7 @@ if ($conn->connect_error) {
 
 $sqlx = "SELECT person.id, Person_FK, FirstName, LastName, number
 FROM person, phonenumber 
-WHERE FirstName='$form_var[0]' AND LastName='$form_var[1]' AND number='$form_var[2]' 
+WHERE FirstName='$form_var[0]' AND LastName='$form_var[1]' 
 AND person.id=Person_FK AND person.status='active' AND phonenumber.status='active'";
 
 $result = $conn->query($sqlx);
