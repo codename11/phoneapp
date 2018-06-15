@@ -12,23 +12,26 @@ if(isset($_GET)){
 
 }
 
-$servername = "ec2-50-19-224-165.compute-1.amazonaws.com";
-$username = "idfbcwnwuwchvb";
-$password = "c5b6e99d9a4536fd0e84e5f34d464acd3d9f605748bcf599c566390ccc302133";
-$dbname = "dcdoc8t7m2pj64";
-$port="5432";
+$servername = "127.0.0.1";
+$username = "root";
+$password = "";
+$dbname = "phoneapp";
 
 // Create connection
-$db_connection = pg_connect("host=$servername  dbname=$dbname port=5432 user=$username  password=$password"); 
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
 
 $sql = "SELECT person.id as pid, Person_FK, FirstName, LastName, number, person.status as stat, phonenumber.status 
 FROM person, phonenumber 
 WHERE FirstName LIKE '%$form_var[0]%' AND LastName LIKE '%$form_var[1]%' AND number LIKE '%$form_var[2]%' 
 AND person.id=Person_FK AND person.status='$form_var[3]'";
 
-$result = pg_query($db_connection, $sql);
+$result = $conn->query($sql);
 
-/*if($result->num_rows > 0){
+if($result->num_rows > 0){
 	
 	while($row = $result->fetch_assoc()) {
 		$myObj->id[] = $row["pid"];
@@ -41,13 +44,12 @@ $result = pg_query($db_connection, $sql);
 	
 	$myJSON = json_encode($myObj);
 	echo($myJSON);
-	
 }
 else if($result->num_rows == 0){
     echo "0 results";
 
-}*/
+}
 
-print_r($result);
+$conn->close();
 
 ?>
