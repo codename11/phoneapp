@@ -19,7 +19,7 @@ $dbname = "dcdoc8t7m2pj64";
 $port="5432";
 
 // Create connection
-$db_connection = pg_connect("host=$servername  dbname=$dbname port=5432 user=$username  password=$password sslmode=require"); 
+$db_connection = pg_connect("host=$servername  dbname=$dbname port=5432 user=$username  password=$password"); 
 
 $sql = "SELECT person.id as pid, Person_FK, FirstName, LastName, number, person.status as stat, phonenumber.status 
 FROM person, phonenumber 
@@ -28,7 +28,7 @@ AND person.id=Person_FK AND person.status='$form_var[3]'";
 
 $result = pg_query($db_connection, $sql);
 
-if($result->num_rows > 0){
+/*if($result->num_rows > 0){
 	
 	while($row = $result->fetch_assoc()) {
 		$myObj->id[] = $row["pid"];
@@ -41,12 +41,13 @@ if($result->num_rows > 0){
 	
 	$myJSON = json_encode($myObj);
 	echo($myJSON);
+	
 }
 else if($result->num_rows == 0){
     echo "0 results";
 
-}
+}*/
 
-
+print_r($result);
 
 ?>
