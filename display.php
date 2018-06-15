@@ -12,24 +12,21 @@ if(isset($_GET)){
 
 }
 
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "phoneapp";
+$servername = "ec2-50-19-224-165.compute-1.amazonaws.com";
+$username = "idfbcwnwuwchvb";
+$password = "c5b6e99d9a4536fd0e84e5f34d464acd3d9f605748bcf599c566390ccc302133";
+$dbname = "dcdoc8t7m2pj64";
+$port="5432";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+$db_connection = pg_connect("host=$servername  dbname=$dbname port=5432 user=$username  password=$password sslmode=require"); 
 
 $sql = "SELECT person.id as pid, Person_FK, FirstName, LastName, number, person.status as stat, phonenumber.status 
 FROM person, phonenumber 
 WHERE FirstName LIKE '%$form_var[0]%' AND LastName LIKE '%$form_var[1]%' AND number LIKE '%$form_var[2]%' 
 AND person.id=Person_FK AND person.status='$form_var[3]'";
 
-$result = $conn->query($sql);
+$result = pg_query($db_connection, $sql);
 
 if($result->num_rows > 0){
 	
@@ -50,6 +47,6 @@ else if($result->num_rows == 0){
 
 }
 
-$conn->close();
+
 
 ?>
