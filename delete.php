@@ -21,7 +21,7 @@ if(isset($_GET["jason"])){
 				}
 				
 				if($i == count($jason["id"])-1){
-					$txt .= ");";
+					$txt .= ")";
 				}
 				
 			}
@@ -41,7 +41,11 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "DELETE FROM Person WHERE id IN(".$txt;
+//$sql = "DELETE FROM Person WHERE id IN(".$txt;
+
+$sql = "UPDATE person, phonenumber SET person.status = 'inactive', phonenumber.status = 'inactive' 
+WHERE person.id IN(".$txt." AND phonenumber.Person_FK IN(".$txt;
+
 echo $sql;
 if ($conn->query($sql) === TRUE) {
     echo "<div class='alert alert-success'>Record deleted successfully!</div>";
