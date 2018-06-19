@@ -23,6 +23,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
+$result = "";
+if(isset($form_var[0]) && !empty($form_var[0]) && isset($form_var[1]) && !empty($form_var[1])){
+    
 $sqlx = "SELECT person.id, Person_FK, FirstName, LastName, number
 FROM person, phonenumber 
 WHERE FirstName='$form_var[0]' AND LastName='$form_var[1]' 
@@ -30,7 +33,7 @@ AND person.id=Person_FK AND person.status='active' AND phonenumber.status='activ
 
 $result = $conn->query($sqlx);
 
-if($result->num_rows == 0){
+if($result->num_rows == 0 && isset($form_var[0]) && !empty($form_var[0]) && isset($form_var[1]) && !empty($form_var[1]) && isset($form_var[2]) && !empty($form_var[2])){
 	
 	$sql = "INSERT INTO person(FirstName, LastName, status) 
 	VALUES ('$form_var[0]', '$form_var[1]', 'active');
@@ -50,7 +53,7 @@ if($result->num_rows == 0){
 	}
 	
 }
-else if($result->num_rows > 0){
+else if($result->num_rows > 0 && isset($form_var[0]) && !empty($form_var[0]) && isset($form_var[1]) && !empty($form_var[1]) && isset($form_var[2]) && !empty($form_var[2])){
 	
 	while($row = $result->fetch_assoc()) {
         
@@ -83,7 +86,6 @@ else if($result->num_rows > 0){
 					<button id="btnx" type="submit" class="btn btn-default">Submit</button>
 				</form>
 			
-		  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -98,8 +100,8 @@ else if($result->num_rows > 0){
 		
 }
 
+}
 
 $conn->close();
-
 
 ?>
