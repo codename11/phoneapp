@@ -17,11 +17,7 @@ $password = "";
 $dbname = "phoneapp";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+$conn = new SimpleDB($servername, $username, $password, $dbname); 
 
 $result = "";
 if(isset($form_var[0]) && !empty($form_var[0]) && isset($form_var[1]) && !empty($form_var[1])){
@@ -31,7 +27,7 @@ FROM person, phonenumber
 WHERE FirstName='$form_var[0]' AND LastName='$form_var[1]' 
 AND person.id=Person_FK AND person.status='active' AND phonenumber.status='active'";
 
-$result = $conn->query($sqlx);
+$result = $conn->execute($sqlx);
 
 if($result->num_rows == 0 && isset($form_var[0]) && !empty($form_var[0]) && isset($form_var[1]) && !empty($form_var[1]) && isset($form_var[2]) && !empty($form_var[2])){
 	
@@ -42,7 +38,7 @@ if($result->num_rows == 0 && isset($form_var[0]) && !empty($form_var[0]) && isse
 	SELECT id FROM person WHERE id=(SELECT MAX(id) FROM person)
 	";
 
-	if ($conn->multi_query($sql) === TRUE) {
+	if ($conn->multi_execute($sql) === TRUE) {
 		 
 		
 		?>

@@ -18,18 +18,14 @@ $password = "";
 $dbname = "phoneapp";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+$conn = new SimpleDB($servername, $username, $password, $dbname); 
 
 $sql = "SELECT person.id as pid, Person_FK, FirstName, LastName, number, person.status as stat, phonenumber.status 
 FROM person, phonenumber 
 WHERE FirstName LIKE '%$form_var[0]%' AND LastName LIKE '%$form_var[1]%' AND number LIKE '%$form_var[2]%' 
 AND person.id=Person_FK AND person.status='$form_var[3]'";
 
-$result = $conn->query($sql);
+$result = $conn->execute($sql);
 
 if($result->num_rows > 0){
 	

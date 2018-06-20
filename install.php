@@ -1,25 +1,18 @@
 <?php
+
+require 'funkcije.php';
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
 $dbname = "";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
-// Check connection
-if ($conn->connect_error) {
-    die("Neuspešna konekcija sa serverom: " . $conn->connect_error);
-}
-else{
-	
-	echo "Uspešna konekcija sa serverom.<br>";
-	
-}
+$conn = new SimpleDB($servername, $username, $password, $dbname); 
 
 // Create database
 $sql1 = "CREATE DATABASE PhoneApp";
 
-if ($conn->query($sql1) === TRUE) {
+if ($conn->execute($sql1) === TRUE) {
     echo "Uspesno napravljena baza";
 } else {
     echo "Neuspešno napravljena baza: " . $conn->error;
@@ -43,10 +36,10 @@ $sql3 = "CREATE TABLE PhoneApp.PhoneNumber (
 	
 $sql = 	$sql2.$sql3;
 
-if ($conn->multi_query($sql) === TRUE) {
-    echo "Uspesno napravljena baza";
+if ($conn->multi_execute($sql) === TRUE) {
+    echo "Uspesno napravljene tabele";
 } else {
-    echo "Neuspešno napravljena baza: " . $conn->error;
+    echo "Neuspešno napravljene tabele: " . $conn->error;
 }
 
 $conn->close();

@@ -21,26 +21,21 @@ $id ="";
 echo "</br>SesijaId: ".$_SESSION["id"]."</br>";
 echo "</br>ID: ".$id."</br>";
 // Create connection
-$conn1 = new mysqli($servername, $username, $password, $dbname);
+$conn1 = new SimpleDB($servername, $username, $password, $dbname); 
 // Check connection
-if ($conn1->connect_error) {
-    die("Connection failed: " . $conn1->connect_error);
-}
 	
 	$id = $_SESSION["id"];
 	
 	$sql2 = "INSERT INTO phonenumber (number, status, Person_FK)
 		VALUES ('$form_var[2]', 'active', '$id')";
 		echo $sql2;
-	if ($conn1->query($sql2) === TRUE) {
+	if ($conn1->execute($sql2) === TRUE) {
 		echo "Record updated successfully";
 	} 
 	else {
 		echo "Error updating record1: " . $conn1->error;
 	}
-	
-	
-	
+		
 $conn1->close();
 
 ?>

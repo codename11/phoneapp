@@ -35,19 +35,13 @@ $password = "";
 $dbname = "phoneapp";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-//$sql = "DELETE FROM Person WHERE id IN(".$txt;
+$conn = new SimpleDB($servername, $username, $password, $dbname); 
 
 $sql = "UPDATE person, phonenumber SET person.status = 'inactive', phonenumber.status = 'inactive' 
 WHERE person.id IN(".$txt." AND phonenumber.Person_FK IN(".$txt;
 
 echo $sql;
-if ($conn->query($sql) === TRUE) {
+if ($conn->execute($sql) === TRUE) {
     echo "<div class='alert alert-success'>Record deleted successfully!</div>";
 } else {
     echo "<div class='alert alert-warning'>Error deleting record: " . $conn->error."</div>";
