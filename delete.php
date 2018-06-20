@@ -47,6 +47,4 @@ if ($conn->execute($sql) === TRUE) {
     echo "<div class='alert alert-warning'>Error deleting record: " . $conn->error."</div>";
 }
 
-$conn->close();
-
 ?>

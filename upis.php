@@ -98,6 +98,4 @@ else if($result->num_rows > 0 && isset($form_var[0]) && !empty($form_var[0]) && 
 
 }
 
-$conn->close();
-
 ?>
