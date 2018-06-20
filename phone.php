@@ -35,7 +35,5 @@ $conn1 = new SimpleDB($servername, $username, $password, $dbname);
 	else {
 		echo "Error updating record1: " . $conn1->error;
 	}
-		
-$conn1->close();
 
 ?>
